@@ -2,6 +2,10 @@
 
 A brief description of what this project does and who it's for.
 
+## Serverless Architecture
+
+The app will utilize serverless architecture by employing AWS Lambda functions to handle backend processes. This approach eliminates the need for traditional server maintenance, enabling the application to scale seamlessly and operate more cost-effectively. Serverless functions will manage the fetching of data from the Google Calendar API and handling user authentication, which allows the app to remain responsive and efficient without the overhead associated with dedicated servers. This serverless setup is crucial for supporting the app's functionality both online and offline, ensuring that it remains highly available and performant under varying network conditions.
+
 ## Project Features
 
 - Filter Events by City.
