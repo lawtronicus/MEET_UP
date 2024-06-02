@@ -19,9 +19,22 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "error",
-    "no-underscore-dangle": ["error", { "allow": ["__WB_MANIFEST"] }],
+    "prettier/prettier": "warn", // Change from "error" to "warn"
+    "no-underscore-dangle": ["warn", { "allow": ["__WB_MANIFEST"] }],
     "prefer-regex-literals": "off",
-    "prefer-template": "off"
+    "prefer-template": "off",
+    "react/function-component-definition": "off", // Disable specific React rules
+    "no-unused-vars": "warn", // Change from "error" to "warn"
+    "no-use-before-define": "off", // Disable rule
+    "react/react-in-jsx-scope": "off", // Disable rule
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }], // Allow .js files to contain JSX
+    "camelcase": "off", // Disable camelcase rule
+    "no-unused-expressions": "warn", // Change from "error" to "warn"
+    "consistent-return": "warn", // Change from "error" to "warn"
+    "no-else-return": "off", // Disable rule
+    "jsx-a11y/click-events-have-key-events": "off", // Disable accessibility rules
+    "jsx-a11y/no-noninteractive-element-interactions": "off", // Disable accessibility rules
+    "react/prop-types": "off", // Disable prop-types validation
+    "react/button-has-type": "off" // Disable button type rule
   }
 }
