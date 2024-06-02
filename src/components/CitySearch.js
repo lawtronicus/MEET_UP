@@ -1,8 +1,8 @@
 // src/components/CitySearch.js
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -13,7 +13,6 @@ const CitySearch = ({ allLocations }) => {
           return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         })
       : [];
-
     setQuery(value);
     setSuggestions(filteredLocations);
   };
@@ -22,7 +21,12 @@ const CitySearch = ({ allLocations }) => {
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false);
+    setCurrentCity(value);
   };
+
+  useEffect(() => {
+    setSuggestions(allLocations);
+  }, [`${allLocations}`]);
 
   return (
     <div id="city-search">
