@@ -9,7 +9,10 @@ describe("<Number of Events /> component", () => {
 
   test("renders text input", () => {
     const NumberOfEventsComponent = render(
-      <NumberOfEvents numberOfEvents={numberOfEvents} />
+      <NumberOfEvents
+        numberOfEvents={numberOfEvents}
+        setCurrentNOE={() => {}}
+      />,
     );
     const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
     expect(numberTextBox).toBeInTheDocument();
@@ -18,14 +21,20 @@ describe("<Number of Events /> component", () => {
 
   test("default value is 32", () => {
     const NumberOfEventsComponent = render(
-      <NumberOfEvents numberOfEvents={numberOfEvents} />
+      <NumberOfEvents
+        numberOfEvents={numberOfEvents}
+        setCurrentNOE={() => {}}
+      />,
     );
     const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
     expect(numberTextBox).toHaveValue("32");
   });
   test("value changes when a user types in it", async () => {
     const NumberOfEventsComponent = render(
-      <NumberOfEvents numberOfEvents={numberOfEvents} />
+      <NumberOfEvents
+        numberOfEvents={numberOfEvents}
+        setCurrentNOE={() => {}}
+      />,
     );
     const user = userEvent.setup();
     const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
@@ -33,5 +42,3 @@ describe("<Number of Events /> component", () => {
     expect(numberTextBox).toHaveValue("10");
   });
 });
-
-//A test in NumberOfEvents.test.js to ensure that the value of the NumberOfEvents component’s textbox has a value that changes accordingly when a user .type()s in it. (Note: If you want to simulate pressing backspace twice and then typing 10, you would write the code await user.type(TextInput_Reference_Variable, '{backspace}{backspace}10');).

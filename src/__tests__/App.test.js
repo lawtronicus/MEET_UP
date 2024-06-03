@@ -4,6 +4,8 @@ import { render, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
 import App from "../App";
+import NumberOfEvents from "../components/NumberOfEvents";
+import EventList from "../components/EventList";
 
 describe("<App /> component", () => {
   let AppDOM;
@@ -44,12 +46,24 @@ describe("<App /> integration", () => {
 
     const allEvents = await getEvents();
     const berlinEvents = allEvents.filter(
-      (event) => event.location === "Berlin, Germany"
+      (event) => event.location === "Berlin, Germany",
     );
 
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain("Berlin, Germany");
     });
+  });
+
+  test("changes the number of events in the event list based on the number typed in the NOE input by the user", async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+    const EventListDOM = AppDOM.querySelector("#event-list");
+    const NumberOfEventsDOM = AppDOM.querySelector("#number-of-events");
+    const numberTextBox = within(NumberOfEventsDOM).queryByRole("textbox");
+    await user.type(numberTextBox, "{backspace}{backspace}10");
+    const EventListItems = within(EventListDOM).queryAllByRole("listitem");
+    expect(EventListItems.length).toBe(10);
   });
 });
