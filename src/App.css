@@ -92,6 +92,7 @@ p {
   gap: 2rem;
   justify-content: center;
   align-items: start;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
