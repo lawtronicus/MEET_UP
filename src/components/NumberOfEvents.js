@@ -14,13 +14,16 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
 
   return (
     <div id="number-of-events">
-      <input
-        id="event-number-input"
-        className="event-number"
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-      />
+      <p>Number of Events:</p>
+      <div className="gradient-wrapper">
+        <input
+          id="event-number-input"
+          className="event-number"
+          type="number"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+      </div>
     </div>
   );
 };

@@ -29,11 +29,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents
-        numberOfEvents={numberOfEvents}
-        setCurrentNOE={setCurrentNOE}
-      />
+      <div className="user-controls">
+        <div className="title">
+          <h1 id="page-title">Find Your CareerFoundry Event!</h1>
+        </div>
+        <CitySearch
+          allLocations={allLocations}
+          setCurrentCity={setCurrentCity}
+        />
+        <NumberOfEvents
+          numberOfEvents={numberOfEvents}
+          setCurrentNOE={setCurrentNOE}
+        />
+      </div>
       <EventList numberOfEvents={numberOfEvents} events={events} />
     </div>
   );

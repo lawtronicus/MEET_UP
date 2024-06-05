@@ -61,7 +61,7 @@ describe("<App /> integration", () => {
     const AppDOM = AppComponent.container.firstChild;
     const EventListDOM = AppDOM.querySelector("#event-list");
     const NumberOfEventsDOM = AppDOM.querySelector("#number-of-events");
-    const numberTextBox = within(NumberOfEventsDOM).queryByRole("textbox");
+    const numberTextBox = within(NumberOfEventsDOM).queryByRole("spinbutton");
     await user.type(numberTextBox, "{backspace}{backspace}10");
     const EventListItems = within(EventListDOM).queryAllByRole("listitem");
     expect(EventListItems.length).toBe(10);

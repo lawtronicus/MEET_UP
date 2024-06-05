@@ -14,7 +14,7 @@ describe("<Number of Events /> component", () => {
         setCurrentNOE={() => {}}
       />,
     );
-    const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
+    const numberTextBox = NumberOfEventsComponent.queryByRole("spinbutton");
     expect(numberTextBox).toBeInTheDocument();
     expect(numberTextBox).toHaveClass("event-number");
   });
@@ -26,8 +26,8 @@ describe("<Number of Events /> component", () => {
         setCurrentNOE={() => {}}
       />,
     );
-    const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
-    expect(numberTextBox).toHaveValue("32");
+    const numberTextBox = NumberOfEventsComponent.queryByRole("spinbutton");
+    expect(numberTextBox).toHaveValue(32);
   });
   test("value changes when a user types in it", async () => {
     const NumberOfEventsComponent = render(
@@ -37,8 +37,8 @@ describe("<Number of Events /> component", () => {
       />,
     );
     const user = userEvent.setup();
-    const numberTextBox = NumberOfEventsComponent.queryByRole("textbox");
+    const numberTextBox = NumberOfEventsComponent.queryByRole("spinbutton");
     await user.type(numberTextBox, "{backspace}{backspace}10");
-    expect(numberTextBox).toHaveValue("10");
+    expect(numberTextBox).toHaveValue(10);
   });
 });

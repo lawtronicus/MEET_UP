@@ -7,12 +7,12 @@ const Event = ({ event }) => {
     setShowDetails((currentShowDetails) => !currentShowDetails);
   };
   return (
-    <li>
-      <div>
+    <li className="event">
+      <div id="event-info">
         <h2>{event.summary}</h2>
         <p>{event.location}</p>
         {showDetails ? <p>{event.description}</p> : null}
-        <button onClick={handleButtonClick}>
+        <button className="details-btn" onClick={handleButtonClick}>
           {showDetails ? "Hide details" : "Show details"}
         </button>
       </div>
