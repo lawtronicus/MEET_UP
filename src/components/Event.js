@@ -7,7 +7,7 @@ const Event = ({ event }) => {
     setShowDetails((currentShowDetails) => !currentShowDetails);
   };
   return (
-    <li className="event">
+    <li className={`event ${showDetails ? "expanded" : ""}`}>
       <div id="event-info">
         <h2>{event.summary}</h2>
         <p>{event.location}</p>

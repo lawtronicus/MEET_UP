@@ -18,7 +18,7 @@ export const extractLocations = (events) => {
 
 const checkToken = async (accessToken) => {
   const response = await fetch(
-    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
+    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`,
   );
   const result = await response.json();
   return result;
@@ -46,7 +46,7 @@ const getToken = async (code) => {
     const response = await fetch(
       "https://0gd252kr3b.execute-api.ap-northeast-2.amazonaws.com/dev/api/token" +
         "/" +
-        encodeCode
+        encodeCode,
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -95,7 +95,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const response = await fetch(
-        "https://0gd252kr3b.execute-api.ap-northeast-2.amazonaws.com/dev/api/get-auth-url"
+        "https://0gd252kr3b.execute-api.ap-northeast-2.amazonaws.com/dev/api/get-auth-url",
       );
       const result = await response.json();
       const { authUrl } = result;
