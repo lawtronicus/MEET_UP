@@ -1,6 +1,8 @@
-# Project Title
+# Meetup App
 
-A brief description of what this project does and who it's for.
+This project uses serverless architecture to pull calendar events from the google calendar API and display then in a user friendly way.
+
+View the project [here](https://lawtronicus.github.io/MEET_UP/).
 
 ## Serverless Architecture
 
