@@ -44,7 +44,7 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
           value={inputValue}
           onChange={handleInputChange}
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "white" }}>{error}</p>}
       </div>
     </div>
   );
