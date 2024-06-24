@@ -17,15 +17,18 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
   const handleInputChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
+
     clearTimeout(debounceTimerRef.current);
     debounceTimerRef.current = setTimeout(() => {
-      if (validateNumberInput(value)) {
+      // Capture the value within the closure
+      const validatedValue = value;
+      if (validateNumberInput(validatedValue)) {
         setError("");
-        setCurrentNOE(value);
+        setCurrentNOE(validatedValue);
       } else {
         setError("Please enter a number between 1 and 100.");
       }
-    }, 300);
+    }, 300); // Adjust the debounce delay as needed
   };
 
   return (
