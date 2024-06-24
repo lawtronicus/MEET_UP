@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/MEET_UP/static/css/main.dda8e567.css",
-    "main.js": "/MEET_UP/static/js/main.5aabd54b.js",
+    "main.js": "/MEET_UP/static/js/main.5683ea4b.js",
     "static/js/453.4a9980c6.chunk.js": "/MEET_UP/static/js/453.4a9980c6.chunk.js",
     "static/media/lawton2604_abstract_space_bright_pink_with_dark_purple_and_oran_c487bed1-95de-48c5-9765-0ad56418985c.png": "/MEET_UP/static/media/lawton2604_abstract_space_bright_pink_with_dark_purple_and_oran_c487bed1-95de-48c5-9765-0ad56418985c.8bc26fb28849b4616163.png",
     "service-worker.js": "/MEET_UP/service-worker.js",
     "index.html": "/MEET_UP/index.html",
     "main.dda8e567.css.map": "/MEET_UP/static/css/main.dda8e567.css.map",
-    "main.5aabd54b.js.map": "/MEET_UP/static/js/main.5aabd54b.js.map",
+    "main.5683ea4b.js.map": "/MEET_UP/static/js/main.5683ea4b.js.map",
     "453.4a9980c6.chunk.js.map": "/MEET_UP/static/js/453.4a9980c6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dda8e567.css",
-    "static/js/main.5aabd54b.js"
+    "static/js/main.5683ea4b.js"
   ]
 }
