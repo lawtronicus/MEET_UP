@@ -1,15 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
   const [inputValue, setInputValue] = useState(numberOfEvents);
+  const [error, setError] = useState("");
+  const debounceTimerRef = useRef(null);
 
   useEffect(() => {
     setInputValue(numberOfEvents);
   }, [numberOfEvents]);
 
+  const validateNumberInput = (value) => {
+    const num = parseInt(value, 10);
+    return !Number.isNaN(num) && num >= 1 && num <= 100;
+  };
+
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-    setCurrentNOE(event.target.value);
+    const value = event.target.value;
+    setInputValue(value);
+    clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = setTimeout(() => {
+      if (validateNumberInput(value)) {
+        setError("");
+        setCurrentNOE(value);
+      } else {
+        setError("Please enter a number between 1 and 100.");
+      }
+    }, 300);
   };
 
   return (
@@ -20,9 +36,12 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
           id="event-number-input"
           className="event-number"
           type="number"
+          min="1"
+          max="100"
           value={inputValue}
           onChange={handleInputChange}
         />
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
     </div>
   );
