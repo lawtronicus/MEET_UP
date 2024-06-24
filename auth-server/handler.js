@@ -11,8 +11,16 @@ const redirect_uris = ["https://lawtronicus.github.io/MEET_UP/"];
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
-  redirect_uris[0]
+  redirect_uris[0],
 );
+
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+  "Access-Control-Allow-Credentials": true,
+};
 
 module.exports.getAuthURL = async () => {
   /**
@@ -27,10 +35,7 @@ module.exports.getAuthURL = async () => {
 
   return {
     statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
+    headers,
     body: JSON.stringify({
       authUrl,
     }),
@@ -51,10 +56,7 @@ module.exports.getAccessToken = async (e) => {
     .then((results) => {
       return {
         statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-        },
+        headers,
         body: JSON.stringify(results),
       };
     })
@@ -67,6 +69,12 @@ module.exports.getAccessToken = async (e) => {
 };
 
 module.exports.getCalendarEvents = async (e) => {
+  if (e.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers,
+    };
+  }
   const access_token = decodeURIComponent(`${e.pathParameters.access_token}`);
   oAuth2Client.setCredentials({ access_token });
 
@@ -85,16 +93,13 @@ module.exports.getCalendarEvents = async (e) => {
         } else {
           resolve(response);
         }
-      }
+      },
     );
   })
     .then((results) => {
       return {
         statusCode: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-        },
+        headers,
         body: JSON.stringify({ events: results.data.items }),
       };
     })
