@@ -19,6 +19,12 @@ const App = () => {
 
   const fetchData = async () => {
     const allEvents = await getEvents();
+    if (!allEvents) {
+      // Handle the case when getEvents returns undefined or null
+      console.error("Failed to fetch events.");
+      return;
+    }
+
     const filteredEvents =
       currentCity === "See all cities"
         ? allEvents
