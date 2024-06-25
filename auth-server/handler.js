@@ -62,7 +62,7 @@ module.exports.getAccessToken = async (e) => {
     })
     .catch((error) => {
       return {
-        statusCoe: 500,
+        statusCode: 500,
         body: JSON.stringify(error),
       };
     });
