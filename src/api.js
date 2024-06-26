@@ -55,7 +55,8 @@ const getToken = async (code) => {
     access_token && localStorage.setItem("access_token", access_token);
     return access_token;
   } catch (error) {
-    error.json();
+    console.error("Error getting token: ", error);
+    return null;
   }
 };
 
@@ -80,12 +81,24 @@ export const getEvents = async () => {
     const result = await response.json();
     if (result) {
       return result.events;
-    } else return null;
+    } else {
+      console.error("Failed to fetch events.");
+      return null;
+    }
+  } else {
+    console.error("No token provided for fetching events.");
+    return null;
   }
 };
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem("access_token");
+
+  if (accessToken) {
+    console.log("Access token found in local storage:", accessToken);
+  } else {
+    console.log("No access token found in local storage.");
+  }
 
   const tokenCheck = accessToken && (await checkToken(accessToken));
 

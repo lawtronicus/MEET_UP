@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import CitySearch from "./components/CitySearch";
 import EventList from "./components/EventList";
 import NumberOfEvents from "./components/NumberOfEvents";
-import { extractLocations, getEvents } from "./api";
+import { extractLocations, getEvents, getAccessToken } from "./api";
 import "./App.css";
 
 const App = () => {
@@ -12,15 +12,22 @@ const App = () => {
   const [currentNOE, setCurrentNOE] = useState(32);
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    fetchData();
+    const checkAuthentication = async () => {
+      const token = await getAccessToken();
+      if (token) {
+        setIsAuthenticated(true);
+        fetchData(token);
+      }
+    };
+    checkAuthentication();
   }, [currentCity, currentNOE]);
 
   const fetchData = async () => {
     const allEvents = await getEvents();
     if (!allEvents) {
-      // Handle the case when getEvents returns undefined or null
       console.error("Failed to fetch events.");
       return;
     }
@@ -39,16 +46,22 @@ const App = () => {
         <div className="title">
           <h1 id="page-title">Find Your CareerFoundry Event!</h1>
         </div>
-        <CitySearch
-          allLocations={allLocations}
-          setCurrentCity={setCurrentCity}
-        />
-        <NumberOfEvents
-          numberOfEvents={numberOfEvents}
-          setCurrentNOE={setCurrentNOE}
-        />
+        {isAuthenticated && (
+          <>
+            <CitySearch
+              allLocations={allLocations}
+              setCurrentCity={setCurrentCity}
+            />
+            <NumberOfEvents
+              numberOfEvents={numberOfEvents}
+              setCurrentNOE={setCurrentNOE}
+            />
+          </>
+        )}
       </div>
-      <EventList numberOfEvents={numberOfEvents} events={events} />
+      {isAuthenticated && (
+        <EventList numberOfEvents={numberOfEvents} events={events} />
+      )}
     </div>
   );
 };
