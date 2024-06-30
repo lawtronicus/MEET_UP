@@ -29,7 +29,6 @@ const App = () => {
   const fetchData = async () => {
     const allEvents = await getEvents();
     if (!allEvents) {
-      console.error("Failed to fetch events.");
       return;
     }
 
@@ -41,13 +40,10 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   };
 
-  useEffect(() => {
-    console.log("InfoAlert state updated:", infoAlert);
-  }, [infoAlert]);
+  useEffect(() => {}, [infoAlert]);
 
   return (
     <div className="App">
-      {console.log("Rendering App component")}
       <div className="alerts-container">
         {infoAlert.length > 0 && <InfoAlert text={infoAlert} />}
       </div>

@@ -7,7 +7,6 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
-    console.log("CitySearch input changed:", value);
 
     const filteredLocations = allLocations
       ? allLocations.filter((location) => {
@@ -25,12 +24,10 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
       infoText = "";
     }
     setInfoAlert(infoText);
-    console.log("InfoAlert text set to:", infoText);
   };
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
-    console.log("City selected:", value);
 
     setQuery(value);
     setShowSuggestions(false);
@@ -40,10 +37,6 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   useEffect(() => {
     setSuggestions(allLocations);
-    console.log(
-      "CitySearch useEffect triggered with allLocations:",
-      allLocations,
-    );
   }, [allLocations]);
 
   return (
