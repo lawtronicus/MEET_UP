@@ -1,9 +1,9 @@
-// src/App.js
 import { useEffect, useState } from "react";
 import CitySearch from "./components/CitySearch";
 import EventList from "./components/EventList";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { extractLocations, getEvents, getAccessToken } from "./api";
+import InfoAlert from "./components/InfoAlert";
 import "./App.css";
 
 const App = () => {
@@ -13,6 +13,7 @@ const App = () => {
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [infoAlert, setInfoAlert] = useState("");
 
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -40,8 +41,16 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   };
 
+  useEffect(() => {
+    console.log("InfoAlert state updated:", infoAlert);
+  }, [infoAlert]);
+
   return (
     <div className="App">
+      {console.log("Rendering App component")}
+      <div className="alerts-container">
+        {infoAlert.length > 0 && <InfoAlert text={infoAlert} />}
+      </div>
       <div className="user-controls">
         <div className="title">
           <h1 id="page-title">Find Your CareerFoundry Event!</h1>
@@ -51,6 +60,7 @@ const App = () => {
             <CitySearch
               allLocations={allLocations}
               setCurrentCity={setCurrentCity}
+              setInfoAlert={setInfoAlert}
             />
             <NumberOfEvents
               numberOfEvents={numberOfEvents}

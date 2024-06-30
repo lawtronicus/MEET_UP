@@ -37,7 +37,8 @@
     "react/prop-types": "off",
     "react/button-has-type": "off",
     "no-return-assign": "off", // Disable no-return-assign rule
-    "prefer-destructuring": "warn", // Change prefer-destructuring to warn
+    "prefer-destructuring": "off", // Change prefer-destructuring to off
+    "react/destructuring-assignment": "off", // Disable react/destructuring-assignment rule
     "arrow-body-style": "warn", // Change arrow-body-style to warn
     "no-param-reassign": "warn" // Change no-param-reassign to warn
   }
