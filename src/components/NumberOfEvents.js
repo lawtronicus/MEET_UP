@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
+const NumberOfEvents = ({ numberOfEvents, setCurrentNOE, setErrorAlert }) => {
   const [inputValue, setInputValue] = useState(numberOfEvents);
-  const [error, setError] = useState("");
   const debounceTimerRef = useRef(null);
 
   useEffect(() => {
@@ -15,20 +14,19 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
   };
 
   const handleInputChange = (event) => {
+    let errorText;
     const value = event.target.value;
     setInputValue(value);
 
-    clearTimeout(debounceTimerRef.current);
-    debounceTimerRef.current = setTimeout(() => {
-      // Capture the value within the closure
-      const validatedValue = value;
-      if (validateNumberInput(validatedValue)) {
-        setError("");
-        setCurrentNOE(validatedValue);
-      } else {
-        setError("Please enter a number between 1 and 100.");
-      }
-    }, 300); // Adjust the debounce delay as needed
+    // Capture the value within the closure
+    const validatedValue = value;
+    if (validateNumberInput(validatedValue)) {
+      errorText = "";
+      setCurrentNOE(validatedValue);
+    } else {
+      errorText = "Please input a number between 0 and 100.";
+    }
+    setErrorAlert(errorText);
   };
 
   return (
@@ -44,7 +42,6 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE }) => {
           value={inputValue}
           onChange={handleInputChange}
         />
-        {error && <p style={{ color: "white" }}>{error}</p>}
       </div>
     </div>
   );

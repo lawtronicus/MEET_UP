@@ -1,16 +1,34 @@
 //src/__tests__CitySearch.test.js
 
-import { render, within } from "@testing-library/react";
+import {
+  render,
+  within,
+  cleanup,
+  waitFor,
+  screen,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
 import App from "../App";
 import { extractLocations, getEvents } from "../api";
+import mockData from "../mock-data";
 
 describe("<CitySearch /> component", () => {
   let CitySearchComponent;
   beforeEach(() => {
-    CitySearchComponent = render(<CitySearch allLocations={[]} />);
+    CitySearchComponent = render(
+      <CitySearch
+        allLocations={[]}
+        setCurrentCity={() => {}}
+        setInfoAlert={() => {}}
+      />,
+    );
   });
+
+  afterEach(() => {
+    cleanup();
+  });
+
   test("renders text input", () => {
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
     expect(cityTextBox).toBeInTheDocument();
@@ -34,7 +52,14 @@ describe("<CitySearch /> component", () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+
+    CitySearchComponent.rerender(
+      <CitySearch
+        allLocations={allLocations}
+        setCurrentCity={() => {}}
+        setInfoAlert={() => {}}
+      />,
+    );
 
     // user types "Berlin" in city textbox
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
@@ -50,18 +75,25 @@ describe("<CitySearch /> component", () => {
       : [];
 
     // get all <li> elements inside the suggestion list
-    const suggestionListItems = CitySearchComponent.queryAllByRole("listitem");
-    expect(suggestionListItems).toHaveLength(suggestions.length + 1);
-    for (let i = 0; i < suggestions.length; i += 1) {
-      expect(suggestionListItems[i].textContent).toBe(suggestions[i]);
-    }
+    await waitFor(() => {
+      const suggestionListItems =
+        CitySearchComponent.queryAllByRole("listitem");
+      expect(suggestionListItems).toHaveLength(suggestions.length + 1);
+      for (let i = 0; i < suggestions.length; i += 1) {
+        expect(suggestionListItems[i].textContent).toBe(suggestions[i]);
+      }
+    });
   });
   test("renders the suggestion text in the textbox upon clicking on the suggestion", async () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
     CitySearchComponent.rerender(
-      <CitySearch allLocations={allLocations} setCurrentCity={() => {}} />
+      <CitySearch
+        allLocations={[]}
+        setCurrentCity={() => {}}
+        setInfoAlert={() => {}}
+      />,
     );
 
     const cityTextBox = CitySearchComponent.queryByRole("textbox");
@@ -78,12 +110,29 @@ describe("<CitySearch /> component", () => {
 
 describe("<CitySearch /> integration", () => {
   test("renders suggestions list when the app is rendered.", async () => {
+    // Mocking API calls locally within this test
+    jest
+      .spyOn(require("../api"), "getAccessToken")
+      .mockResolvedValue("mocked-token");
+    jest.spyOn(require("../api"), "getEvents").mockResolvedValue(mockData);
+
     const user = userEvent.setup();
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
 
-    const CitySearchDOM = AppDOM.querySelector("#city-search");
-    const cityTextBox = within(CitySearchDOM).queryByRole("textbox");
+    // Ensure the App component is rendered correctly
+    expect(AppDOM).toBeInTheDocument();
+
+    let CitySearchDOM;
+    let cityTextBox;
+
+    // Wait for the CitySearch component to be rendered
+    await waitFor(() => {
+      CitySearchDOM = AppDOM.querySelector("#city-search");
+      cityTextBox = within(CitySearchDOM).queryByRole("textbox");
+      expect(cityTextBox).toBeInTheDocument();
+    });
+
     await user.click(cityTextBox);
 
     const allEvents = await getEvents();

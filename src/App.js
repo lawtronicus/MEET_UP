@@ -4,6 +4,7 @@ import EventList from "./components/EventList";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { extractLocations, getEvents, getAccessToken } from "./api";
 import InfoAlert from "./components/InfoAlert";
+import ErrorAlert from "./components/ErrorAlert";
 import "./App.css";
 
 const App = () => {
@@ -14,10 +15,12 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [infoAlert, setInfoAlert] = useState("");
+  const [errorAlert, setErrorAlert] = useState("");
 
   useEffect(() => {
     const checkAuthentication = async () => {
       const token = await getAccessToken();
+      console.log("token: ", token);
       if (token) {
         setIsAuthenticated(true);
         fetchData(token);
@@ -26,7 +29,7 @@ const App = () => {
     checkAuthentication();
   }, [currentCity, currentNOE]);
 
-  const fetchData = async () => {
+  const fetchData = async (token) => {
     const allEvents = await getEvents();
     if (!allEvents) {
       return;
@@ -40,12 +43,11 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   };
 
-  useEffect(() => {}, [infoAlert]);
-
   return (
     <div className="App">
       <div className="alerts-container">
         {infoAlert.length > 0 && <InfoAlert text={infoAlert} />}
+        {errorAlert.length > 0 && <ErrorAlert text={errorAlert} />}
       </div>
       <div className="user-controls">
         <div className="title">
@@ -61,6 +63,7 @@ const App = () => {
             <NumberOfEvents
               numberOfEvents={numberOfEvents}
               setCurrentNOE={setCurrentNOE}
+              setErrorAlert={setErrorAlert}
             />
           </>
         )}

@@ -1,8 +1,8 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
 import { render, within, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "../App";
 import { getEvents } from "../api";
-import userEvent from "@testing-library/user-event";
 
 const feature = loadFeature("./src/features/filterEventsByCity.feature");
 
@@ -14,15 +14,18 @@ defineFeature(feature, (test) => {
   }) => {
     let AppComponent;
     given("user hasn't searched for any city", () => {});
-    when("the user opens the app", () => {
+    when("the user opens the app", async () => {
+      jest
+        .spyOn(require("../api"), "getAccessToken")
+        .mockResolvedValue("mocked-token");
+
       AppComponent = render(<App />);
     });
 
     then("the user should see the list of all upcoming events.", async () => {
-      const AppDOM = AppComponent.container.firstChild;
-      const EventListDOM = AppDOM.querySelector("#event-list");
-
       await waitFor(() => {
+        const AppDOM = AppComponent.container.firstChild;
+        const EventListDOM = AppDOM.querySelector("#event-list");
         const EventListItems = within(EventListDOM).queryAllByRole("listitem");
         expect(EventListItems.length).toBe(32);
       });
@@ -36,21 +39,28 @@ defineFeature(feature, (test) => {
   }) => {
     let AppComponent;
     let CitySearchDOM;
-    given("the main page is open", () => {
+
+    given("the main page is open", async () => {
+      jest
+        .spyOn(require("../api"), "getAccessToken")
+        .mockResolvedValue("mocked-token");
       AppComponent = render(<App />);
+      await waitFor(() => {
+        const AppDOM = AppComponent.container.firstChild;
+        CitySearchDOM = AppDOM.querySelector("#city-search");
+        expect(CitySearchDOM).toBeInTheDocument();
+      });
     });
 
     when("user starts typing in the city textbox", async () => {
       const user = userEvent.setup();
-      const AppDOM = AppComponent.container.firstChild;
-      CitySearchDOM = AppDOM.querySelector("#city-search");
       const citySearchInput = within(CitySearchDOM).queryByRole("textbox");
       await user.type(citySearchInput, "Berlin");
     });
 
     then(
       "the user should recieve a list of cities (suggestions) that match what they've typed",
-      async () => {
+      () => {
         const suggestionListItems =
           within(CitySearchDOM).queryAllByRole("listitem");
         expect(suggestionListItems).toHaveLength(2);
@@ -70,17 +80,28 @@ defineFeature(feature, (test) => {
     let citySearchInput;
     let suggestionListItems;
     given("user was typing “Berlin” in the city textbox", async () => {
+      jest
+        .spyOn(require("../api"), "getAccessToken")
+        .mockResolvedValue("mocked-token");
       AppComponent = render(<App />);
       const user = userEvent.setup();
-      AppDOM = AppComponent.container.firstChild;
-      CitySearchDOM = AppDOM.querySelector("#city-search");
+      await waitFor(() => {
+        AppDOM = AppComponent.container.firstChild;
+        CitySearchDOM = AppDOM.querySelector("#city-search");
+        expect(CitySearchDOM).toBeInTheDocument();
+      });
       citySearchInput = within(CitySearchDOM).queryByRole("textbox");
       await user.type(citySearchInput, "Berlin");
     });
 
-    and("the list of suggested cities is showing", () => {
-      suggestionListItems = within(CitySearchDOM).queryAllByRole("listitem");
-      expect(suggestionListItems).toHaveLength(2);
+    and("the list of suggested cities is showing", async () => {
+      await waitFor(() => {
+        suggestionListItems = within(CitySearchDOM).queryAllByRole("listitem");
+        const suggestionsText = suggestionListItems.map(
+          (item) => item.textContent,
+        );
+        expect(suggestionsText).toEqual(["Berlin, Germany", "See all cities"]);
+      });
     });
 
     when(
@@ -102,12 +123,15 @@ defineFeature(feature, (test) => {
       "the user should receive a list of upcoming events in that city",
       async () => {
         const EventListDOM = AppDOM.querySelector("#event-list");
-        const EventListItems = within(EventListDOM).queryAllByRole("listitem");
         const allEvents = await getEvents();
         const berlinEvents = allEvents.filter(
           (event) => event.location === citySearchInput.value,
         );
-        expect(EventListItems).toHaveLength(berlinEvents.length);
+        await waitFor(() => {
+          const EventListItems =
+            within(EventListDOM).queryAllByRole("listitem");
+          expect(EventListItems).toHaveLength(berlinEvents.length);
+        });
       },
     );
   });

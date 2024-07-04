@@ -1,8 +1,27 @@
-//src/__tests__CitySearch.test.js
-
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NumberOfEvents from "../components/NumberOfEvents";
+
+jest.mock("react", () => {
+  const originalModule = jest.requireActual("react");
+  return {
+    ...originalModule,
+    useState: (initialValue) => {
+      if (initialValue === false) {
+        return [true, jest.fn()];
+      }
+      return originalModule.useState(initialValue);
+    },
+  };
+});
+
+jest.mock("../api", () => {
+  const originalModule = jest.requireActual("../api");
+  return {
+    ...originalModule,
+    getAccessToken: jest.fn(() => Promise.resolve("mocked-token")),
+  };
+});
 
 describe("<Number of Events /> component", () => {
   const numberOfEvents = "32";
@@ -12,6 +31,7 @@ describe("<Number of Events /> component", () => {
       <NumberOfEvents
         numberOfEvents={numberOfEvents}
         setCurrentNOE={() => {}}
+        setErrorAlert={() => {}}
       />,
     );
     const numberTextBox = NumberOfEventsComponent.queryByRole("spinbutton");
@@ -24,6 +44,7 @@ describe("<Number of Events /> component", () => {
       <NumberOfEvents
         numberOfEvents={numberOfEvents}
         setCurrentNOE={() => {}}
+        setErrorAlert={() => {}}
       />,
     );
     const numberTextBox = NumberOfEventsComponent.queryByRole("spinbutton");
@@ -34,6 +55,7 @@ describe("<Number of Events /> component", () => {
       <NumberOfEvents
         numberOfEvents={numberOfEvents}
         setCurrentNOE={() => {}}
+        setErrorAlert={() => {}}
       />,
     );
     const user = userEvent.setup();

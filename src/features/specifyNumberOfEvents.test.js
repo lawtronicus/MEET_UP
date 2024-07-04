@@ -5,6 +5,27 @@ import userEvent from "@testing-library/user-event";
 
 const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 
+jest.mock("react", () => {
+  const originalModule = jest.requireActual("react");
+  return {
+    ...originalModule,
+    useState: (initialValue) => {
+      if (initialValue === false) {
+        return [true, jest.fn()];
+      }
+      return originalModule.useState(initialValue);
+    },
+  };
+});
+
+jest.mock("../api", () => {
+  const originalModule = jest.requireActual("../api");
+  return {
+    ...originalModule,
+    getAccessToken: jest.fn(() => Promise.resolve("mocked-token")),
+  };
+});
+
 defineFeature(feature, (test) => {
   test("Default number of events displayed is 32", ({
     given,

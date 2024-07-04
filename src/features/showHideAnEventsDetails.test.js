@@ -1,7 +1,7 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
-import { render, within, waitFor } from "@testing-library/react";
-import App from "../App";
+import { render, within, waitFor, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import App from "../App";
 
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
 
@@ -13,8 +13,17 @@ defineFeature(feature, (test) => {
   }) => {
     let AppComponent;
     let EventListDOM;
-    given("user has started the app", () => {
+
+    given("user has started the app", async () => {
+      jest
+        .spyOn(require("../api"), "getAccessToken")
+        .mockResolvedValue("mocked-token");
+
       AppComponent = render(<App />);
+      await waitFor(() => {
+        EventListDOM = AppComponent.container.querySelector("#event-list");
+        expect(EventListDOM).toBeInTheDocument();
+      });
     });
 
     when("user views the list of events", async () => {
@@ -39,14 +48,23 @@ defineFeature(feature, (test) => {
     let EventListDOM;
     let EventItem;
     let DetailsButton;
+
     given("user has started the app", async () => {
+      jest
+        .spyOn(require("../api"), "getAccessToken")
+        .mockResolvedValue("mocked-token");
+
       AppComponent = render(<App />);
-      EventListDOM = AppComponent.container.querySelector("#event-list");
+      await waitFor(() => {
+        EventListDOM = AppComponent.container.querySelector("#event-list");
+        expect(EventListDOM).toBeInTheDocument();
+      });
       await waitFor(() => {
         EventItem = within(EventListDOM).queryAllByRole("listitem")[0];
         DetailsButton = within(EventItem).queryByRole("button", {
           name: /show details/i,
         });
+        expect(DetailsButton).toBeInTheDocument();
       });
     });
 
@@ -75,13 +93,22 @@ defineFeature(feature, (test) => {
     let DetailsButton;
 
     given("user has started the app", async () => {
+      jest
+        .spyOn(require("../api"), "getAccessToken")
+        .mockResolvedValue("mocked-token");
+
       AppComponent = render(<App />);
+      await waitFor(() => {
+        EventListDOM = AppComponent.container.querySelector("#event-list");
+        expect(EventListDOM).toBeInTheDocument();
+      });
       EventListDOM = AppComponent.container.querySelector("#event-list");
       await waitFor(() => {
         EventItem = within(EventListDOM).queryAllByRole("listitem")[0];
         DetailsButton = within(EventItem).queryByRole("button", {
           name: /show details/i,
         });
+        expect(DetailsButton).toBeInTheDocument();
       });
     });
 
