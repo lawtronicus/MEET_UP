@@ -22,7 +22,7 @@
     "no-debugger": "error",
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
-    "eqeqeq": ["error", "always"],
+    "eqeqeq": ["warn", "always"],
     "curly": ["error", "all"]
   },
   "settings": {

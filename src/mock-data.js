@@ -3,7 +3,7 @@
 const mockData = [
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200519T140000Z",
     status: "confirmed",
     htmlLink:
@@ -44,7 +44,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200520T120000Z",
     status: "confirmed",
     htmlLink:
@@ -85,7 +85,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200521T140000Z",
     status: "confirmed",
     htmlLink:
@@ -126,7 +126,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200522T120000Z",
     status: "confirmed",
     htmlLink:
@@ -167,7 +167,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200523T140000Z",
     status: "confirmed",
     htmlLink:
@@ -208,7 +208,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200525T120000Z",
     status: "confirmed",
     htmlLink:
@@ -249,7 +249,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200526T140000Z",
     status: "confirmed",
     htmlLink:
@@ -290,7 +290,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200527T120000Z",
     status: "confirmed",
     htmlLink:
@@ -331,7 +331,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200528T140000Z",
     status: "confirmed",
     htmlLink:
@@ -372,7 +372,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200529T120000Z",
     status: "confirmed",
     htmlLink:
@@ -413,7 +413,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200530T140000Z",
     status: "confirmed",
     htmlLink:
@@ -454,7 +454,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200601T120000Z",
     status: "confirmed",
     htmlLink:
@@ -495,7 +495,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200602T140000Z",
     status: "confirmed",
     htmlLink:
@@ -536,7 +536,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200603T120000Z",
     status: "confirmed",
     htmlLink:
@@ -577,7 +577,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200604T140000Z",
     status: "confirmed",
     htmlLink:
@@ -618,7 +618,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200605T120000Z",
     status: "confirmed",
     htmlLink:
@@ -659,7 +659,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200606T140000Z",
     status: "confirmed",
     htmlLink:
@@ -700,7 +700,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200608T120000Z",
     status: "confirmed",
     htmlLink:
@@ -741,7 +741,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200609T140000Z",
     status: "confirmed",
     htmlLink:
@@ -782,7 +782,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200610T120000Z",
     status: "confirmed",
     htmlLink:
@@ -823,7 +823,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200611T140000Z",
     status: "confirmed",
     htmlLink:
@@ -864,7 +864,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200612T120000Z",
     status: "confirmed",
     htmlLink:
@@ -905,7 +905,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200613T140000Z",
     status: "confirmed",
     htmlLink:
@@ -946,7 +946,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200615T120000Z",
     status: "confirmed",
     htmlLink:
@@ -987,7 +987,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200616T140000Z",
     status: "confirmed",
     htmlLink:
@@ -1028,7 +1028,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200617T120000Z",
     status: "confirmed",
     htmlLink:
@@ -1069,7 +1069,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200618T140000Z",
     status: "confirmed",
     htmlLink:
@@ -1110,7 +1110,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200619T120000Z",
     status: "confirmed",
     htmlLink:
@@ -1151,7 +1151,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200620T140000Z",
     status: "confirmed",
     htmlLink:
@@ -1192,7 +1192,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200622T120000Z",
     status: "confirmed",
     htmlLink:
@@ -1233,7 +1233,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200623T140000Z",
     status: "confirmed",
     htmlLink:
@@ -1274,7 +1274,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200624T120000Z",
     status: "confirmed",
     htmlLink:
@@ -1315,7 +1315,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200625T140000Z",
     status: "confirmed",
     htmlLink:
@@ -1356,7 +1356,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181159875584000"',
+    etag: "3181159875584000",
     id: "3qtd6uscq4tsi6gc7nmmtpqlct_20200626T120000Z",
     status: "confirmed",
     htmlLink:
@@ -1397,7 +1397,7 @@ const mockData = [
   },
   {
     kind: "calendar#event",
-    etag: '"3181161784712000"',
+    etag: "3181161784712000",
     id: "4eahs9ghkhrvkld72hogu9ph3e_20200627T140000Z",
     status: "confirmed",
     htmlLink:
