@@ -42,16 +42,16 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   return (
     <div id="city-search">
       <p>City:</p>
-      <div className="gradient-wrapper">
-        <input
-          type="text"
-          className="city"
-          value={query}
-          placeholder="Search for a city"
-          onFocus={() => setShowSuggestions(true)}
-          onChange={handleInputChanged}
-        />
-      </div>
+
+      <input
+        type="text"
+        className="city"
+        value={query}
+        placeholder="Search for a city"
+        onFocus={() => setShowSuggestions(true)}
+        onChange={handleInputChanged}
+      />
+
       {showSuggestions ? (
         <ul className="suggestions">
           {suggestions.map((suggestion) => {

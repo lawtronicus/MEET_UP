@@ -3,11 +3,18 @@
   text-align: center;
   width: 100%;
   min-height: 100vh;
-  background-image: url("../public/lawton2604_abstract_space_bright_pink_with_dark_purple_and_oran_c487bed1-95de-48c5-9765-0ad56418985c.png");
+  background-color: #eef5f7;
 }
 
 .App * {
   box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-family: "DINPro-Cond", Helvetica, Arial, sans-serif;
+  font-size: 60px;
+  line-height: 1.15;
 }
 
 ul {
@@ -24,7 +31,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: #223c50;
   color: white;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -35,36 +42,18 @@ p {
   margin-top: 0;
 }
 
-.gradient-wrapper {
-  position: relative;
-  display: inline-block;
-  border-radius: 24px;
-  padding: 2px 1px 2px 1px;
-  background: linear-gradient(45deg, #9000af, #f14673);
-}
-
-.gradient-wrapper input[type="text"] {
-  width: 16rem !important;
-}
-
-.gradient-wrapper input[type="text"],
-.gradient-wrapper input[type="number"] {
+input {
   padding: 8px 6px 8px 10px;
-  border: none;
-  border-radius: 24px;
+  border: 1px solid rgb(167, 177, 185);
+  border-radius: 8px;
   outline: none;
   font-size: 14px;
   line-height: 20px;
   align-self: center;
   height: 38px;
   margin: 0;
-  background-color: black;
-  color: white;
-}
-
-.gradient-wrapper input[type="text"]:focus,
-.gradient-wrapper input[type="number"]:focus {
-  box-shadow: 0 0 5px rgba(144, 0, 175, 0.5);
+  background-color: white;
+  color: black;
 }
 
 .city {
@@ -125,42 +114,23 @@ p {
   flex-direction: column;
   flex: 1 1 calc(50% - 2rem);
   position: relative;
-  color: white;
+  color: #223c50;
   padding: 2rem;
   padding-top: 1rem;
   margin-bottom: 10px;
   text-align: left;
-  border-radius: 24px;
   position: relative;
   width: 75%;
   justify-content: center;
+  /*
   background: linear-gradient(
     45deg,
     rgba(255, 255, 255, 0.4),
     rgba(25, 255, 255, 0.1)
   );
-  backdrop-filter: blur(12px);
-}
-
-.event::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  padding: 2px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.75),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(241, 70, 115, 0.75)
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
+  */
+  background-color: white;
+  box-shadow: 5px 5px 10px 0 rgba(51, 51, 51, 0.2);
 }
 
 #event-info {
@@ -173,18 +143,16 @@ p {
   right: 5px;
   bottom: 5px;
   padding: 5px 8px;
-  border-radius: 24px;
+  border-radius: 4px;
   height: 3rem;
-  background-color: rgba(255, 255, 255, 0.4);
-  mix-blend-mode: overlay;
+  background-color: #1c7488;
   border: none;
   outline: none;
   cursor: pointer;
   align-self: end;
   width: 6rem;
   color: white;
-  border-left: 1px solid white;
-  border-top: 1px solid white;
+  margin-top: 1rem;
 }
 
 .suggestions {

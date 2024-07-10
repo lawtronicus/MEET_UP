@@ -8,7 +8,7 @@ import ErrorAlert from "./components/ErrorAlert";
 import "./App.css";
 
 const App = () => {
-  const [numberOfEvents, setNumberOfEvents] = useState(32);
+  const [numberOfEvents] = useState(32);
   const [events, setEvents] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
   const [allLocations, setAllLocations] = useState([]);
@@ -20,7 +20,6 @@ const App = () => {
   useEffect(() => {
     const checkAuthentication = async () => {
       const token = await getAccessToken();
-      console.log("token: ", token);
       if (token) {
         setIsAuthenticated(true);
         fetchData(token);
@@ -30,7 +29,7 @@ const App = () => {
   }, [currentCity, currentNOE]);
 
   const fetchData = async (token) => {
-    const allEvents = await getEvents();
+    const allEvents = await getEvents(token);
     if (!allEvents) {
       return;
     }

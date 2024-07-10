@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const NumberOfEvents = ({ numberOfEvents, setCurrentNOE, setErrorAlert }) => {
   const [inputValue, setInputValue] = useState(numberOfEvents);
-  const debounceTimerRef = useRef(null);
 
   useEffect(() => {
     setInputValue(numberOfEvents);
@@ -32,17 +31,15 @@ const NumberOfEvents = ({ numberOfEvents, setCurrentNOE, setErrorAlert }) => {
   return (
     <div id="number-of-events">
       <p>Number of Events:</p>
-      <div className="gradient-wrapper">
-        <input
-          id="event-number-input"
-          className="event-number"
-          type="number"
-          min="1"
-          max="100"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-      </div>
+      <input
+        id="event-number-input"
+        className="event-number"
+        type="number"
+        min="1"
+        max="100"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
     </div>
   );
 };
