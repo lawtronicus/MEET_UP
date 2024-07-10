@@ -182,6 +182,7 @@ input {
 
 .suggestions > li:hover {
   background-color: #bcdcdb;
+  color: black;
 }
 
 .alerts-container {
