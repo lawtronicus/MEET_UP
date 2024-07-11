@@ -50,7 +50,7 @@ const App = () => {
       </div>
       <div className="user-controls">
         <div className="title">
-          <h1 id="page-title">Find Your CareerFoundry Event!</h1>
+          <h1 id="page-title">Find Your Event!</h1>
         </div>
         {isAuthenticated && (
           <>
