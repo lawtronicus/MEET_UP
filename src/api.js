@@ -96,7 +96,8 @@ export const getEvents = async () => {
 export const getAccessToken = async () => {
   console.log("!navigator.online returns: ", !navigator.online);
   if (
-    window.location.href.startsWith("http://localhost" || !navigator.onLine)
+    window.location.href.startsWith("http://localhost") ||
+    !navigator.onLine
   ) {
     console.log("localhost or currently offline");
     return "access_token";
