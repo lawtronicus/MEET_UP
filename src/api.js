@@ -65,6 +65,7 @@ const getToken = async (code) => {
  */
 export const getEvents = async () => {
   if (window.location.href.startsWith("http://localhost")) {
+    localStorage.setItem("lastEvents", JSON.stringify(mockData));
     return mockData;
   }
 
@@ -94,12 +95,10 @@ export const getEvents = async () => {
 };
 
 export const getAccessToken = async () => {
-  console.log("!navigator.online returns: ", !navigator.online);
   if (
     window.location.href.startsWith("http://localhost") ||
     !navigator.onLine
   ) {
-    console.log("localhost or currently offline");
     return "access_token";
   }
   const accessToken = localStorage.getItem("access_token");
