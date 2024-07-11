@@ -94,7 +94,9 @@ export const getEvents = async () => {
 };
 
 export const getAccessToken = async () => {
-  if (window.location.href.startsWith("http://localhost")) {
+  if (
+    window.location.href.startsWith("http://localhost" || !navigator.onLine)
+  ) {
     return "access_token";
   }
   const accessToken = localStorage.getItem("access_token");
