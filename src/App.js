@@ -85,11 +85,7 @@ const App = () => {
       {isLoading ? (
         <div>
           <h2 className="loading-message">Loading events</h2>
-          <div className="loading-dots">
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
-          </div>
+          <div className="loader"></div>
         </div>
       ) : (
         isAuthenticated && (
