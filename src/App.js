@@ -14,6 +14,7 @@ const App = () => {
   const [currentNOE, setCurrentNOE] = useState(32);
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
+  const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
@@ -25,7 +26,7 @@ const App = () => {
         setWarningAlert("");
       } else {
         setWarningAlert(
-          "You are currently offline. Events may not be updated.",
+          "You are currently offline. Events may not be up-to-date.",
         );
       }
       const token = await getAccessToken();
@@ -38,6 +39,8 @@ const App = () => {
   }, [currentCity, currentNOE]);
 
   const fetchData = async (token) => {
+    setIsLoading(true);
+
     const allEvents = await getEvents(token);
     if (!allEvents) {
       return;
@@ -49,6 +52,8 @@ const App = () => {
         : allEvents.filter((event) => event.location === currentCity);
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
+
+    setIsLoading(false);
   };
 
   return (
@@ -77,9 +82,21 @@ const App = () => {
           </>
         )}
       </div>
-      {isAuthenticated && (
-        <EventList numberOfEvents={numberOfEvents} events={events} />
+      {isLoading ? (
+        <div>
+          <h2 className="loading-message">Loading events</h2>
+          <div className="loading-dots">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </div>
+        </div>
+      ) : (
+        isAuthenticated && (
+          <EventList numberOfEvents={numberOfEvents} events={events} />
+        )
       )}
+      ;
     </div>
   );
 };

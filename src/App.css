@@ -85,6 +85,10 @@ input {
   margin: 0;
 }
 
+#event-list:nth-child(odd):last-child {
+  justify-content: flex-start;
+}
+
 #event-number-input {
   width: 9.5rem;
 }
@@ -113,7 +117,7 @@ input {
 .event {
   display: flex;
   flex-direction: column;
-  flex: 1 1 calc(50% - 2rem);
+  flex: 0 1 calc(50% - 2rem);
   position: relative;
   color: #223c50;
   padding: 2rem;
@@ -123,13 +127,6 @@ input {
   position: relative;
   width: 75%;
   justify-content: center;
-  /*
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.4),
-    rgba(25, 255, 255, 0.1)
-  );
-  */
   background-color: white;
   box-shadow: 5px 5px 10px 0 rgba(51, 51, 51, 0.2);
 }
@@ -192,4 +189,34 @@ input {
   left: 20px;
   width: 250px;
   z-index: 1000;
+}
+
+/* Styling for loading message */
+.loading-message {
+  text-align: center;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.loading-dots span {
+  animation: blink 1.4s infinite both;
+  margin: 0 2px;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
 }
