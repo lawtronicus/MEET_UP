@@ -96,7 +96,6 @@ const App = () => {
           <EventList numberOfEvents={numberOfEvents} events={events} />
         )
       )}
-      ;
     </div>
   );
 };
