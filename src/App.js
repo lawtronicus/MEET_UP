@@ -83,7 +83,7 @@ const App = () => {
         )}
       </div>
       {isLoading ? (
-        <div>
+        <div className="loading-container">
           <h2 className="loading-message">Loading events</h2>
           <div className="loader"></div>
         </div>
