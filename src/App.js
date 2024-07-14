@@ -5,6 +5,7 @@ import NumberOfEvents from "./components/NumberOfEvents";
 import { extractLocations, getEvents, getAccessToken } from "./api";
 import InfoAlert from "./components/InfoAlert";
 import ErrorAlert from "./components/ErrorAlert";
+import WarningAlert from "./components/WarningAlert";
 import "./App.css";
 
 const App = () => {
@@ -16,9 +17,17 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
 
   useEffect(() => {
     const checkAuthentication = async () => {
+      if (navigator.onLine) {
+        setWarningAlert("");
+      } else {
+        setWarningAlert(
+          "You are currently offline. Events may not be updated.",
+        );
+      }
       const token = await getAccessToken();
       if (token) {
         setIsAuthenticated(true);
@@ -47,6 +56,7 @@ const App = () => {
       <div className="alerts-container">
         {infoAlert.length > 0 && <InfoAlert text={infoAlert} />}
         {errorAlert.length > 0 && <ErrorAlert text={errorAlert} />}
+        {warningAlert.length > 0 && <WarningAlert text={warningAlert} />}
       </div>
       <div className="user-controls">
         <div className="title">

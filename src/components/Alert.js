@@ -9,7 +9,7 @@ class Alert extends Component {
     this.bgColor = null;
   }
 
-  getStyle = () => {
+  getStyle() {
     return {
       color: this.color,
       backgroundColor: this.bgColor,
@@ -23,7 +23,7 @@ class Alert extends Component {
       margin: "10px 0",
       padding: "10px",
     };
-  };
+  }
 
   render() {
     return (

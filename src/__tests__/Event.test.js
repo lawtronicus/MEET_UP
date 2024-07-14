@@ -29,7 +29,6 @@ describe("<Event /> component", () => {
   });
 
   test("renders event details button with the title (show details)", () => {
-    console.log(EventComponent.container.innerHTML); // Log the DOM
     expect(EventComponent.queryByText("Show details")).toBeInTheDocument();
   });
 
