@@ -6,7 +6,9 @@ const EventList = ({ events }) => {
   return (
     <ul id="event-list">
       {events
-        ? events.map((event) => <Event key={event.id} event={event} />)
+        ? events.map((event) => {
+            return <Event key={event.id} event={event} />;
+          })
         : null}
     </ul>
   );

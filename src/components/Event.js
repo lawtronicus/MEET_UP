@@ -8,7 +8,7 @@ const Event = ({ event }) => {
   };
   return (
     <li
-      className={`event ${showDetails ? "expanded" : ""}`}
+      className={`event${showDetails ? " expanded" : ""}`}
       style={showDetails ? { border: "2px solid #81e1da" } : {}}
     >
       <div id="event-info">

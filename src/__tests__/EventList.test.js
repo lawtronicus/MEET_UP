@@ -12,7 +12,7 @@ describe("<EventList /> component", () => {
     EventListComponent = render(<EventList />);
   });
 
-  test('has an element with "list" role', () => {
+  test("has an element with 'list' role", () => {
     expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
   });
 
