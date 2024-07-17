@@ -6,6 +6,7 @@ import { extractLocations, getEvents, getAccessToken } from "./api";
 import InfoAlert from "./components/InfoAlert";
 import ErrorAlert from "./components/ErrorAlert";
 import WarningAlert from "./components/WarningAlert";
+import CityEventsChart from "./components/CityEventsChart";
 import "./App.css";
 
 const App = () => {
@@ -89,7 +90,10 @@ const App = () => {
         </div>
       ) : (
         isAuthenticated && (
-          <EventList numberOfEvents={numberOfEvents} events={events} />
+          <div>
+            <CityEventsChart allLocations={allLocations} events={events} />
+            <EventList numberOfEvents={numberOfEvents} events={events} />
+          </div>
         )
       )}
     </div>
