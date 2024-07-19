@@ -27,11 +27,6 @@ describe("<EventList /> component", () => {
 
 describe("<EventList /> integration", () => {
   test("renders a list of 32 events when the app is mounted and rendered", async () => {
-    jest
-      .spyOn(require("../api"), "getAccessToken")
-      .mockResolvedValue("mocked-token");
-    jest.spyOn(require("../api"), "getEvents").mockResolvedValue(mockData);
-
     const AppComponent = render(<App />);
 
     waitFor(() => {

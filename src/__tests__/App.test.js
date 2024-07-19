@@ -3,7 +3,7 @@
 import { render, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
-import * as api from "../api"; // Import everything from api
+import * as api from "../api";
 
 describe("<App /> component", () => {
   let AppComponent;

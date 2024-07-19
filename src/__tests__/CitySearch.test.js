@@ -1,12 +1,6 @@
 //src/__tests__CitySearch.test.js
 
-import {
-  render,
-  within,
-  cleanup,
-  waitFor,
-  screen,
-} from "@testing-library/react";
+import { render, within, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
 import App from "../App";
@@ -90,7 +84,7 @@ describe("<CitySearch /> component", () => {
     const allLocations = extractLocations(allEvents);
     CitySearchComponent.rerender(
       <CitySearch
-        allLocations={[]}
+        allLocations={allLocations}
         setCurrentCity={() => {}}
         setInfoAlert={() => {}}
       />,
@@ -111,11 +105,6 @@ describe("<CitySearch /> component", () => {
 describe("<CitySearch /> integration", () => {
   test("renders suggestions list when the app is rendered.", async () => {
     // Mocking API calls locally within this test
-    jest
-      .spyOn(require("../api"), "getAccessToken")
-      .mockResolvedValue("mocked-token");
-    jest.spyOn(require("../api"), "getEvents").mockResolvedValue(mockData);
-
     const user = userEvent.setup();
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;

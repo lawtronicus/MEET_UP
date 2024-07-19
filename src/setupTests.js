@@ -8,12 +8,32 @@ const MESSAGES_TO_IGNORE = [
   "Error:",
   "The above error occurred",
 ];
-
+// eslint-disable-next-line no-console
 const originalError = console.error.bind(console.error);
 
+// eslint-disable-next-line no-console
 console.error = (...args) => {
   const ignoreMessage = MESSAGES_TO_IGNORE.find((message) =>
-    args.toString().includes(message)
+    args.toString().includes(message),
   );
-  if (!ignoreMessage) originalError(...args);
+  if (!ignoreMessage) {
+    originalError(...args);
+  }
 };
+
+const { ResizeObserver } = window;
+
+beforeEach(() => {
+  //@ts-ignore
+  delete window.ResizeObserver;
+  window.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn(),
+  }));
+});
+
+afterEach(() => {
+  window.ResizeObserver = ResizeObserver;
+  jest.restoreAllMocks();
+});

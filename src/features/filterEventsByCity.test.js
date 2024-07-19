@@ -15,10 +15,6 @@ defineFeature(feature, (test) => {
     let AppComponent;
     given("user hasn't searched for any city", () => {});
     when("the user opens the app", async () => {
-      jest
-        .spyOn(require("../api"), "getAccessToken")
-        .mockResolvedValue("mocked-token");
-
       AppComponent = render(<App />);
     });
 
@@ -41,9 +37,6 @@ defineFeature(feature, (test) => {
     let CitySearchDOM;
 
     given("the main page is open", async () => {
-      jest
-        .spyOn(require("../api"), "getAccessToken")
-        .mockResolvedValue("mocked-token");
       AppComponent = render(<App />);
       await waitFor(() => {
         const AppDOM = AppComponent.container.firstChild;
@@ -59,7 +52,7 @@ defineFeature(feature, (test) => {
     });
 
     then(
-      "the user should recieve a list of cities (suggestions) that match what they've typed",
+      "the user should receive a list of cities (suggestions) that match what they've typed",
       () => {
         const suggestionListItems =
           within(CitySearchDOM).queryAllByRole("listitem");
@@ -80,9 +73,6 @@ defineFeature(feature, (test) => {
     let citySearchInput;
     let suggestionListItems;
     given("user was typing “Berlin” in the city textbox", async () => {
-      jest
-        .spyOn(require("../api"), "getAccessToken")
-        .mockResolvedValue("mocked-token");
       AppComponent = render(<App />);
       const user = userEvent.setup();
       await waitFor(() => {

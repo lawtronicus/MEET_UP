@@ -4,17 +4,12 @@ import Event from "../components/Event";
 import mockData from "../mock-data"; // Import mock data
 import * as api from "../api"; // Import everything from api
 
-jest.mock("../api", () => ({
-  getEvents: jest.fn(), // We will define this mock later
-  getAccessToken: jest.fn(() => Promise.resolve("mocked-token")),
-}));
-
 describe("<Event /> component", () => {
   let EventComponent;
   let event;
 
   beforeEach(async () => {
-    api.getEvents.mockResolvedValueOnce(mockData); // Mock getEvents to return mock data
+    api.getEvents(); // Mock getEvents to return mock data
     const allEvents = await api.getEvents(); // Log to verify the events
     event = allEvents[0]; // Store the first event
     EventComponent = render(<Event event={event} />);

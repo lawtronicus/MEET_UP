@@ -1,5 +1,5 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
-import { render, within, waitFor, screen } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../App";
 
@@ -39,7 +39,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('When a user clicks the "details" button, the event will expand to show the event details', ({
+  test("When a user clicks the 'details' button, the event will expand to show the event details", ({
     given,
     when,
     then,
@@ -81,7 +81,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('When a user clicks the "hide" button on an expanded event, the event will collapse again to hide the details.', ({
+  test("When a user clicks the 'hide' button on an expanded event, the event will collapse again to hide the details.", ({
     given,
     and,
     when,
