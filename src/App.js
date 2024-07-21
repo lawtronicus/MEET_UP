@@ -7,6 +7,7 @@ import InfoAlert from "./components/InfoAlert";
 import ErrorAlert from "./components/ErrorAlert";
 import WarningAlert from "./components/WarningAlert";
 import CityEventsChart from "./components/CityEventsChart";
+import EventGenresChart from "./components/EventGenresChart";
 import "./App.css";
 
 const App = () => {
@@ -90,8 +91,11 @@ const App = () => {
         </div>
       ) : (
         isAuthenticated && (
-          <div>
-            <CityEventsChart allLocations={allLocations} events={events} />
+          <div className="main-body">
+            <div className="charts-container">
+              <EventGenresChart events={events} />
+              <CityEventsChart allLocations={allLocations} events={events} />
+            </div>
             <EventList numberOfEvents={numberOfEvents} events={events} />
           </div>
         )

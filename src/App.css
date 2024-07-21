@@ -108,12 +108,6 @@ input {
   }
 }
 
-@media (max-width: 767px) {
-  #event-list .event {
-    flex: 1 1 100%;
-  }
-}
-
 .event {
   display: flex;
   flex-direction: column;
@@ -270,5 +264,19 @@ input {
 @keyframes l23-2 {
   100% {
     top: -0.1px;
+  }
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 767px) {
+  #event-list .event {
+    flex: 1 1 100%;
+  }
+  .charts-container {
+    grid-template-columns: 1fr;
   }
 }
