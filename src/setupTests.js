@@ -21,19 +21,10 @@ console.error = (...args) => {
   }
 };
 
-const { ResizeObserver } = window;
+class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
 
-beforeEach(() => {
-  //@ts-ignore
-  delete window.ResizeObserver;
-  window.ResizeObserver = jest.fn().mockImplementation(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn(),
-  }));
-});
-
-afterEach(() => {
-  window.ResizeObserver = ResizeObserver;
-  jest.restoreAllMocks();
-});
+window.ResizeObserver = ResizeObserver;

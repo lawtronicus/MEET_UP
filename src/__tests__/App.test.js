@@ -1,4 +1,7 @@
 // src/__tests__/App.test.js
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
 import { render, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -6,18 +9,9 @@ import App from "../App";
 import * as api from "../api";
 
 describe("<App /> component", () => {
-  let AppComponent;
-
-  beforeEach(async () => {
-    AppComponent = render(<App />);
-    await waitFor(() =>
-      expect(
-        AppComponent.container.querySelector(".user-controls"),
-      ).toBeInTheDocument(),
-    );
-  });
-
   test("authenticates user and fetches events", async () => {
+    const AppComponent = render(<App />);
+
     await waitFor(() => {
       expect(
         AppComponent.container.querySelector("#event-list"),
@@ -26,6 +20,7 @@ describe("<App /> component", () => {
   });
 
   test("renders CitySearch", async () => {
+    const AppComponent = render(<App />);
     await waitFor(() => {
       expect(
         AppComponent.container.querySelector("#city-search"),
@@ -34,6 +29,7 @@ describe("<App /> component", () => {
   });
 
   test("renders NumberOfEvents", async () => {
+    const AppComponent = render(<App />);
     await waitFor(() => {
       expect(
         AppComponent.container.querySelector("#number-of-events"),

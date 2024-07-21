@@ -5,7 +5,6 @@ import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
 import App from "../App";
 import { extractLocations, getEvents } from "../api";
-import mockData from "../mock-data";
 
 describe("<CitySearch /> component", () => {
   let CitySearchComponent;
